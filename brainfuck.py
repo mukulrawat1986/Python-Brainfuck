@@ -5,7 +5,7 @@ class Brainfry(object):
     def __init__(self):
         # we simulate the array with a list
         # the array has a capacity of 30,000 byte cells
-        self.array = [0]*(30*10**3)
+        self.array = [0 for i in xrange(30000)]
         # the data pointer, initially at position 0
         self.dataptr = 0
         # dictionary that maps the '[' with index of corresponding ']' and
@@ -17,10 +17,11 @@ class Brainfry(object):
         """Function to simulate the '<' command.
         The '<' operator decrements the data pointer,
         we have to make sure the data pointer is not negative"""
-        if self.dataptr <= 0:
+        if self.dataptr >0:
+            self.dataptr -= 1
+        else:
             raise ValueError, "Operation making data pointer go beyond min array limit"
-        self.dataptr -= 1
-
+        
     def gt(self):
         """Function to simulate the '>' command.
         The '>' command increments the data pointer,
